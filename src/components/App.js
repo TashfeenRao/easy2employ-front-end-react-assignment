@@ -10,6 +10,12 @@ export default class App extends Component {
       loggedInStatus: "not_logged_in",
       user: {}
     }
+    this.handleLoggedIn = this.handleLoggedIn.bind(this)
+  }
+  handleLoggedIn(data) {
+    this.setState({
+      loggedInStatus: "Logged_In",
+    })
   }
   render() {
     return (
@@ -20,7 +26,7 @@ export default class App extends Component {
           exact 
           path="/" 
           render={props => (
-            <Login {... props} loggedStatus={this.state.loggedInStatus}/>
+            <Login {... props} handleLoggedIn={this.handleLoggedIn} loggedStatus={this.state.loggedInStatus}/>
           )} />
           <Route 
           exact 

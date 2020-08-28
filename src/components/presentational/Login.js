@@ -11,6 +11,7 @@ export default class Login extends Component {
   }
 
   handleSuccessFull(data) {
+    this.props.handleLoggedIn(data)
     this.props.history.push("/userView")
   }
   render() {
