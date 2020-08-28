@@ -23,7 +23,17 @@ export default class App extends Component {
   loggedStatus() {
     axios.get("http://localhost:3001/logged_in",{withCredentials: true}).then(
       response => {
-        console.log("loggedStatus?",response)
+        if(response.data.logged_in && this.state.loggedInStatus === "not_logged_in") {
+          this.setState({
+            loggedInStatus: 'Logged_In',
+            user: response.data.user
+          })
+        }
+        else if(!response.data.logged_in && this.state.loggedInStatus === 'Logged_In') {
+          this.setState({
+            loggedInStatus: 'not_logged_in'
+          })
+        }
       }
     ).catch(error => {
       console.log("loggedStatus error", error)
