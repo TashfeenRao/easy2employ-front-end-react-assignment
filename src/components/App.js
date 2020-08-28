@@ -22,7 +22,12 @@ export default class App extends Component {
           render={props => (
             <Login {... props} loggedStatus={this.state.loggedInStatus}/>
           )} />
-          <Route exact path="/userView" component={UserView} />
+          <Route 
+          exact 
+          path="/userView" 
+          render={props => (
+            <UserView {... props} loggedStatus={this.state.loggedInStatus} />
+          )} />
         </Switch>
         </BrowserRouter>
       </div>

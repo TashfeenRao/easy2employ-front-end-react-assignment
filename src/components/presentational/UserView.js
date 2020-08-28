@@ -1,9 +1,9 @@
 import React from 'react'
 
-function UserView() {
-    return (
+const UserView = props => {
+    return(
         <div>
-            <h1>User view</h1>
+            <h1>Status: {props.loggedStatus}</h1>
         </div>
     )
 }
