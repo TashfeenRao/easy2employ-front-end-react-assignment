@@ -32,10 +32,9 @@ export default class LoginForm extends Component {
         { withCredentials: true }
       )
       .then((response) => {
-        console.log(response)
-        //if(response.data.status === "created") {
-           // this.props.handleSuccessFull(response.data)
-        //}
+        if(response.data.logged_in) {
+            this.props.handleSuccessFull(response.data)
+        }
       })
       .catch((error) => {
         console.log("login error", error);

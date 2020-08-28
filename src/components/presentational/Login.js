@@ -19,7 +19,7 @@ export default class Login extends Component {
       <Container>
         <Row className="justify-content-center mt-4">
           <h1>Status: {this.props.loggedStatus}</h1>
-          <LoginForm />
+          <LoginForm  handleSuccessFull={this.handleSuccessFull} />
           <Registration  handleSuccessFull={this.handleSuccessFull} />
         </Row>
       </Container>
