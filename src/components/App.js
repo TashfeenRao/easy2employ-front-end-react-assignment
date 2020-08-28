@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import axios from 'axios';
 import Login from '../components/presentational/Login';
 import UserView from '../components/presentational/UserView';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -11,6 +12,7 @@ export default class App extends Component {
       user: {}
     }
     this.handleLoggedIn = this.handleLoggedIn.bind(this)
+    this.loggedStatus = this.loggedStatus.bind(this)
   }
   handleLoggedIn(data) {
     this.setState({
@@ -18,6 +20,20 @@ export default class App extends Component {
       user: data.user
     })
   }
+  loggedStatus() {
+    axios.get("http://localhost:3001/logged_in",{withCredentials: true}).then(
+      response => {
+        console.log("loggedStatus?",response)
+      }
+    ).catch(error => {
+      console.log("loggedStatus error", error)
+    })
+  }
+
+  componentDidMount() {
+    this.loggedStatus()
+  }
+
   render() {
     return (
       <div>
