@@ -10,7 +10,7 @@ export default class App extends Component {
         <BrowserRouter>
         <Switch>
           <Route exact path="/" component={Login} />
-          <Route exact path="userView" component={UserView} />
+          <Route exact path="/userView" component={UserView} />
         </Switch>
         </BrowserRouter>
       </div>
