@@ -23,7 +23,7 @@ export default class Registration extends Component {
     const { username, password, passwordConfirmation } = this.state;
     axios
       .post(
-        "http://localhost:3001/registrations",
+        "https://the-back-end-auth-api.herokuapp.com/registrations",
         {
           user: {
             username: username,
@@ -36,10 +36,12 @@ export default class Registration extends Component {
       .then((response) => {
         if(response.data.status === "created") {
             this.props.handleSuccessFull(response.data)
+            localStorage.setItem("loginStatus", true)
         }
       })
       .catch((error) => {
-        //console.log("response error", error);
+        console.log("register error", error);
+        localStorage.setItem("loginStatus", false)
       });
   }
 
