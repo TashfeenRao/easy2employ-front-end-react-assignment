@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { BrowserRouter, Switch, Route, Redirect,  } from "react-router-dom";
+import { BrowserRouter, Switch, Route, } from "react-router-dom";
 import axios from "axios";
 import Login from "../components/presentational/Login";
 import UserView from "../components/presentational/UserView";
@@ -15,8 +15,8 @@ export default class App extends Component {
     this.loggedStatus = this.loggedStatus.bind(this);
   }
   componentDidMount() {
-    //this.loggedStatus();
-    const getStatus = localStorage.getItem("loginStatus");
+    this.loggedStatus();
+/*     const getStatus = localStorage.getItem("loginStatus");
     if (getStatus && this.state.loggedInStatus === "not_logged_in") {
       this.setState({
         loggedInStatus: "Logged_In",
@@ -25,7 +25,7 @@ export default class App extends Component {
       this.setState({
         loggedInStatus: "not_logged_in",
       });
-    }
+    } */
   }
 
   handleLoggedIn(data) {

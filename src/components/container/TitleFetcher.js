@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import axios from 'axios';
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
+import PreviewTitles from '../presentational/PreviewTitles';
 
 const TitleFetcher = () => {
   const [text, setText] = useState('');
@@ -45,20 +45,13 @@ return (
       </Button>
     </Form>
     
-    {loading &&  <h3>Fetching link previews... 🤔🤔🤔</h3> }
+    {loading &&  <h3>Fetching titles previews...</h3> }
 
 
-    {links.map(obj => <PreviewCard key={obj.url} linkData={obj} />) }
+    {links.map(obj => <PreviewTitles key={obj.url} linkData={obj} />) }
   </div>
 );
 
 } 
-function PreviewCard({ linkData }) {
-  return (
-      <div>
-        <h4>{linkData.title}</h4>
-      </div>
-  )
-}
 
 export default TitleFetcher

@@ -13,41 +13,47 @@ export default class LoginForm extends Component {
     this.state = {
       username: "",
       password: "",
-      registrationError: "",
+      registrationError: [],
+      loading: false
     };
   }
 
   handleSubmit(event) {
     event.preventDefault();
+    this.setState({
+      loading: true
+    })
     const { username, password } = this.state;
     axios
       .post(
         "https://the-back-end-auth-api.herokuapp.com/sessions",
-        {
-          method: 'POST',
-          mode: 'no-cors',
-          headers: {
-            'Access-Control-Allow-Origin': '*',
-            'Content-Type': 'application/json',
-          },
-          withCredentials: true,
-          credentials: 'same-origin'
-        },
         {
           user: {
             username: username,
             password: password,
           },
         },
+        {
+          withCredentials: true,
+        }
       )
       .then((response) => {
         if(response.data.logged_in) {
             this.props.handleSuccessFull(response.data)
             localStorage.setItem("loginStatus", true)
+            console.log("successs")
+            this.setState({
+              loading: false
+            })
         }
       })
       .catch((error) => {
-        console.log("login error", error);
+        this.setState({
+          loading: false
+        })
+        this.setState({
+          registrationError: error
+        })
         localStorage.setItem("loginStatus", false)
       });
   }
@@ -88,6 +94,7 @@ export default class LoginForm extends Component {
             Login
           </Button>
         </Form>
+        {this.state.loading &&  <h3>Signning you wait...</h3> }
       </div>
     )
   }
