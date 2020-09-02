@@ -24,12 +24,21 @@ export default class LoginForm extends Component {
       .post(
         "https://the-back-end-auth-api.herokuapp.com/sessions",
         {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: {
+            'Access-Control-Allow-Origin': '*',
+            'Content-Type': 'application/json',
+          },
+          withCredentials: true,
+          credentials: 'same-origin'
+        },
+        {
           user: {
             username: username,
             password: password,
           },
         },
-        { withCredentials: true }
       )
       .then((response) => {
         if(response.data.logged_in) {
